@@ -1,12 +1,17 @@
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home/Home';
+import Navbar from './Pages/Shared/Navbar';
 
 function App() {
   return (
     <div>
-      <h2 className='text-3xl text-green-500'>Hello Medi Tools</h2>
-      <button class="btn btn-primary">Button</button>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path='/' element={<Home></Home>}></Route>
+      </Routes>
       <ToastContainer></ToastContainer>
     </div>
   );
