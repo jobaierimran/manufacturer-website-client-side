@@ -36,11 +36,11 @@ const AddReview = () => {
                         .then(res => res.json())
                         .then(inserted => {
                             if (inserted.insertedId) {
-                                toast.success('Doctor Added successfully');
+                                toast.success('Review Added successfully');
                                 reset();
                             }
                             else {
-                                toast.error('Failed to add the doctor');
+                                toast.error('Failed to add the review');
                             }
                         })
                 }
