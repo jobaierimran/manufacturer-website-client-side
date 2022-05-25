@@ -26,7 +26,7 @@ const AddReview = () => {
                         img: img
                     }
                     // send to your database
-                    fetch('', {
+                    fetch('http://localhost:5000/review', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
