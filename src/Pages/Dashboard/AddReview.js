@@ -1,31 +1,138 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const AddReview = () => {
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const imageStorageKey = '3ca0901828bf167160b533e2cfa55655';
+
+    const onSubmit = async data => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    const review = {
+                        name: data.name,
+                        rating: data.rating,
+                        comment: data.comment,
+                        img: img
+                    }
+                    // send to your database
+                    fetch('', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(review)
+                    })
+                        .then(res => res.json())
+                        .then(inserted => {
+                            if (inserted.insertedId) {
+                                toast.success('Doctor Added successfully');
+                                reset();
+                            }
+                            else {
+                                toast.error('Failed to add the doctor');
+                            }
+                        })
+                }
+                console.log('imagebb result', result);
+            })
+    }
     return (
-        <div>
+        <section className='flex justify-center mt-12'>
             <div>
-                <h4 className="text-2xl text-primary font-bold text-center my-12">Please Review Us</h4>
-            </div>
-            <div className='flex justify-center'>
-                <form>
-                    <div className='mb-5'>
-                        <input type="text" name='reviewerName' className='border lg:w-96 h-12 text-md px-4 rounded-lg focus:outline-primary' placeholder='Your Name' />
+                <h2 className='text-2xl text-center text-secondary'>Please Review Us</h2>
+                <form onSubmit={handleSubmit(onSubmit)}>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'Name is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                        </label>
                     </div>
-                    <div className='mb-5'>
-                        <input type="text" name='reviewImg' className='border lg:w-96 h-12 text-md px-4 rounded-lg focus:outline-primary' placeholder='ImageURL' />
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Ratings</span>
+                        </label>
+                        <input
+                            type="number"
+                            placeholder="Ratings 1 - 5"
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("rating", {
+                                required: {
+                                    value: true,
+                                    message: 'Rating is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.rating?.type === 'required' && <span className="label-text-alt text-red-500">{errors.rating.message}</span>}
+                        </label>
                     </div>
-                    <div className='mb-5'>
-                        <input type="text" name='rating' className='border lg:w-96 h-12 text-md px-4 rounded-lg focus:outline-primary' placeholder='Ratings 1-5' />
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Comment</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Comment here..."
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("comment", {
+                                required: {
+                                    value: true,
+                                    message: 'Comment is Required'
+                                }  
+                            })}
+                        />
+                        <label className="label">
+                            {errors.comment?.type === 'required' && <span className="label-text-alt text-red-500">{errors.comment.message}</span>}
+                        </label>
                     </div>
-                    <div className='mb-5'>
-                        <textarea type="text" name='comment' className='border lg:w-96 h-12 text-md px-4 rounded-lg focus:outline-primary' placeholder='Comment here' />
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Upload Photo</span>
+                        </label>
+                        <input
+                            type="file"
+                            placeholder=""
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("image", {
+                                required: {
+                                    value: true,
+                                    message: 'Image is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.image?.type === 'required' && <span className="label-text-alt text-red-500">{errors.image.message}</span>}
+                        </label>
                     </div>
-                    <div className="text-center">
-                        <button className='btn btn-primary'><span className='px-9'>Submit</span></button>
-                    </div>
+                    <input className='btn btn-secondary w-full max-w-xs' type="submit" value="Add" />
                 </form>
             </div>
-        </div>
+        </section>
     );
 };
 
