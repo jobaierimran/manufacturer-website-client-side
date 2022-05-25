@@ -1,9 +1,19 @@
 import React from 'react';
 
-const Review = () => {
+const Review = ({ review }) => {
+    const { img, rating, name, comment } = review;
     return (
-        <div>
-            <h2>This is Review</h2>
+        <div class="card max-w-lg bg-base-100 shadow-xl">
+            <div class="card-body">
+                <div class="avatar">
+                    <div class="w-24 mask mask-hexagon">
+                        <img src={img} />
+                    </div>
+                </div>
+                <h2 class="card-title">Ratings: {rating}</h2>
+                <h2 class="card-title">{name}</h2>
+                <p>{comment}</p>
+            </div>
         </div>
     );
 };
