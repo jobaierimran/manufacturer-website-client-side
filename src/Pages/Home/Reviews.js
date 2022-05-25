@@ -10,7 +10,7 @@ const Reviews = () => {
         return <Loading></Loading>
     }
     return (
-        <section className='container mx-auto'>
+        <section className='container mx-auto my-28'>
             <h2 className='text-primary text-3xl text-center font-bold mb-8'>Reviews By Our Customers</h2>
             <div className='gap-5 grid lg:grid-cols-4 md:grid-cols-2'>
                 {

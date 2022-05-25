@@ -11,7 +11,7 @@ const Products = () => {
     }
 
     return (
-        <div className='mt-12 container mx-auto'>
+        <div className='container mx-auto my-28'>
             <h2 className='text-primary text-3xl text-center font-bold mb-8'>Medical Tools</h2>
             <div className='justify-center gap-5 grid lg:grid-cols-3 md:grid-cols-2'>
                 {

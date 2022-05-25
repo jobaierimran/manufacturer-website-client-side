@@ -8,7 +8,7 @@ import { AiOutlineFlag } from 'react-icons/ai';
 const Summary = () => {
     return (
         <>
-            <div className='my-12'>
+            <div className='my-28'>
                 <h2 className='text-primary text-3xl text-center font-bold mb-8'>Our Business Summary</h2>
                 <div className='container mx-auto flex justify-center'>
                     <div className="stats shadow">

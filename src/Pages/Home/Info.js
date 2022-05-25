@@ -2,7 +2,7 @@ import React from 'react';
 import mediToolImage1 from '../../Assests/images/medi-tools1.jpg'
 const Info = () => {
     return (
-        <div>
+        <div className='my-28'>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img alt='' src={mediToolImage1} />
