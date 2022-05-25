@@ -1,9 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const [user]= useAuthState(auth);
+    console.log(user.email);
     const imageStorageKey = '3ca0901828bf167160b533e2cfa55655';
 
     const onSubmit = async data => {
@@ -19,19 +23,22 @@ const AddProduct = () => {
             .then(result => {
                 if (result.success) {
                     const img = result.data.url;
-                    const review = {
+                    const productTools = {
                         name: data.name,
-                        rating: data.rating,
-                        comment: data.comment,
+                        email: user?.email,
+                        description: data.description,
+                        price: data.price,
+                        minQuantity: data.minQuantity,
+                        availableQuantity: data.availableQuantity,
                         img: img
                     }
                     // send to your database
-                    fetch('', {
+                    fetch('http://localhost:5000/product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
                         },
-                        body: JSON.stringify(review)
+                        body: JSON.stringify(productTools)
                     })
                         .then(res => res.json())
                         .then(inserted => {
