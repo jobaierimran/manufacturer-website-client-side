@@ -9,7 +9,7 @@ const Contact = () => {
                 backgroundRepeat: "no-repeat",
                 boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.6)"
             }}
-            className='flex justify-center py-16'>
+            className='flex justify-center py-16 mt-12'>
             <div>
                 <div>
                     <h4 className="text-xl text-primary font-bold text-center">Contact Us</h4>
