@@ -26,7 +26,7 @@ const AddReview = () => {
                         img: img
                     }
                     // send to your database
-                    fetch('http://localhost:5000/review', {
+                    fetch('https://thawing-cove-14033.herokuapp.com/review', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -103,7 +103,7 @@ const AddReview = () => {
                                 required: {
                                     value: true,
                                     message: 'Comment is Required'
-                                }  
+                                }
                             })}
                         />
                         <label className="label">

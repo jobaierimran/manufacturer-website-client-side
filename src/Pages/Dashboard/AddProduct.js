@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const [user]= useAuthState(auth);
+    const [user] = useAuthState(auth);
     console.log(user.email);
     const imageStorageKey = '3ca0901828bf167160b533e2cfa55655';
 
@@ -33,7 +33,7 @@ const AddProduct = () => {
                         img: img
                     }
                     // send to your database
-                    fetch('http://localhost:5000/product', {
+                    fetch('https://thawing-cove-14033.herokuapp.com/product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
