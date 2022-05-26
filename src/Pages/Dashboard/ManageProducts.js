@@ -4,8 +4,11 @@ import Loading from '../Shared/Loading';
 import ManageProductRow from './ManageProductRow';
 
 const ManageProducts = () => {
-    const [deletingDoctor, setDeletingDoctor] = useState(null);
-    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://thawing-cove-14033.herokuapp.com/product').then(res => res.json()));
+    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://thawing-cove-14033.herokuapp.com/product', {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
@@ -34,7 +37,6 @@ const ManageProducts = () => {
                                 product={product}
                                 index={index}
                                 refetch={refetch}
-                                setDeletingDoctor={setDeletingDoctor}
                             ></ManageProductRow>)
                         }
                     </tbody>

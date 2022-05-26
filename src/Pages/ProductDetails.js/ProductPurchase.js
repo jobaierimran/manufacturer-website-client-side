@@ -14,7 +14,7 @@ const ProductPurchase = () => {
     const handleOrderSubmit = (event) => {
         event.preventDefault();
         const name = user.displayName;
-        const email = user.email;
+        const customer = user.email;
         const productName = event.target.productName.value;
         const price = event.target.price.value;
         const minQuantity = event.target.minQuantity.value;
@@ -23,7 +23,7 @@ const ProductPurchase = () => {
         const phone = event.target.phone.value;
         const address = event.target.address.value;
 
-        const order = { name, email, productName, minQuantity, price, availableQuantity, orderQuantity, phone, address };
+        const order = { name, customer, productName, minQuantity, price, availableQuantity, orderQuantity, phone, address };
 
         fetch('https://thawing-cove-14033.herokuapp.com/order', {
             method: 'POST',
