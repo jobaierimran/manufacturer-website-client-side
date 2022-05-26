@@ -12,7 +12,7 @@ const ProductPurchase = () => {
 
     return (
         <div className='container mx-auto'>
-           <h2 className='text-primary text-3xl text-center font-bold mt-8'>Purchase Informations</h2>
+            <h2 className='text-primary text-3xl text-center font-bold mt-8'>Purchase Informations</h2>
             <div className="hero bg-base-200 my-12 rounded-xl">
                 <div className="hero-content flex-col lg:flex-row-reverse">
 
@@ -47,19 +47,19 @@ const ProductPurchase = () => {
                                     <label className="label">
                                         <span className="label-text">Minimum Order Quantity</span>
                                     </label>
-                                    <input type="number" value={product?.minQuantity} placeholder="minimum quantity" className="input input-bordered" disabled/>
+                                    <input type="number" name='minQuantity' value={product?.minQuantity} placeholder="minimum quantity" className="input input-bordered" disabled />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Available Order Quantity</span>
                                     </label>
-                                    <input type="number" value={product.availableQuantity}   placeholder="available quantity" className="input input-bordered" disabled/>
+                                    <input type="number" name='availableQuantity' value={product.availableQuantity} placeholder="available quantity" className="input input-bordered" disabled />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Your Order Quantity</span>
                                     </label>
-                                    <input type="number"  placeholder="qunatity" className="input input-bordered" required/>
+                                    <input type="number" name='orderQuantity' placeholder="qunatity" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
