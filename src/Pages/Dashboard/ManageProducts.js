@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import DeleteConfirmModal from './DeleteConfirmModal';
 import ManageProductRow from './ManageProductRow';
 
 const ManageProducts = () => {
+    const [deleteProduct, setDeleteProduct] = useState(null);
     const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://thawing-cove-14033.herokuapp.com/product', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -37,10 +39,18 @@ const ManageProducts = () => {
                                 product={product}
                                 index={index}
                                 refetch={refetch}
+                                setDeleteProduct={setDeleteProduct}
                             ></ManageProductRow>)
                         }
                     </tbody>
                 </table>
+                {
+                    deleteProduct && <DeleteConfirmModal
+                        deleteProduct={deleteProduct}
+                        refetch={refetch}
+                        setDeleteProduct={setDeleteProduct}
+                    ></DeleteConfirmModal>
+                }
             </div>
         </div>
     );

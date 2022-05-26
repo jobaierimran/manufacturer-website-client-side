@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ManageProductRow = ({ product, index }) => {
+const ManageProductRow = ({ product, index, setDeleteProduct }) => {
     const { name, description, price, minQuantity, availableQuantity, img } = product;
     return (
         <tr>
@@ -17,6 +17,9 @@ const ManageProductRow = ({ product, index }) => {
             <td>{price}</td>
             <td>{minQuantity}</td>
             <td>{availableQuantity}</td>
+            <td>
+                <label onClick={() => setDeleteProduct(product)} htmlFor="delete-confirm-modal" className="btn btn-xs btn-error">Delete</label>
+            </td>
         </tr>
     );
 };
