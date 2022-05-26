@@ -17,6 +17,7 @@ import ManageProducts from './Pages/Dashboard/ManageProducts';
 import ProductPurchase from './Pages/ProductDetails.js/ProductPurchase';
 import RequireAdmin from './Pages/Authentication/RequireAdmin';
 import NotFound from './Pages/Shared/NotFound';
+import Blogs from './Pages/Blogs/Blogs';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/product/:productId" element={<RequireAuth><ProductPurchase></ProductPurchase></RequireAuth>}></Route>
 
         {/* Start Dashboard Route */}
