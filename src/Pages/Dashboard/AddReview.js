@@ -78,6 +78,8 @@ const AddReview = () => {
                         </label>
                         <input
                             type="number"
+                            min={1}
+                            max={5}
                             placeholder="Ratings 1 - 5"
                             className="input input-bordered w-full max-w-xs"
                             {...register("rating", {
