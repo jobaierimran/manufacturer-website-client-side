@@ -19,6 +19,7 @@ import RequireAdmin from './Pages/Authentication/RequireAdmin';
 import NotFound from './Pages/Shared/NotFound';
 import Blogs from './Pages/Blogs/Blogs';
 import Portfolio from './Pages/Portfolio/Portfolio';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
+        <Route path="/myProfile" element={<MyProfile></MyProfile>}></Route>
         <Route path="/product/:productId" element={<RequireAuth><ProductPurchase></ProductPurchase></RequireAuth>}></Route>
 
         {/* Start Dashboard Route */}
