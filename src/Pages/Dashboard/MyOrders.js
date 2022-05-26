@@ -60,7 +60,7 @@ const MyOrders = () => {
                             orders.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order?.name}</td>
-                                <td>{order.email}</td>
+                                <td>{order?.customer}</td>
                                 <td>{order.productName}</td>
                                 <td>{order.price}</td>
                                 <td>{order.orderQuantity}</td>

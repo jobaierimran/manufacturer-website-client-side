@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const UserRow = ({ user, refetch, index }) => {
-    const { email, role } = user;
+    const {name, email, role } = user;
     const makeAdmin = () => {
         fetch(`https://thawing-cove-14033.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
@@ -26,6 +26,7 @@ const UserRow = ({ user, refetch, index }) => {
     return (
         <tr>
             <th>{index + 1}</th>
+            <td>{name}</td>
             <td>{email}</td>
             <td>{role !== 'admin' && <button onClick={makeAdmin} className="btn btn-xs bg-green-500 text-white">Make Admin</button>}</td>
             <td><button className="btn btn-xs bg-red-500 text-white">Remove User</button></td>
