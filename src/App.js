@@ -15,6 +15,7 @@ import AddReview from './Pages/Dashboard/AddReview';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import ProductPurchase from './Pages/ProductDetails.js/ProductPurchase';
+import RequireAdmin from './Pages/Authentication/RequireAdmin';
 
 function App() {
   return (
@@ -42,19 +43,19 @@ function App() {
             </RequireAuth>}>
           </Route>
           <Route path="addProduct" element={
-            <RequireAuth>
+            <RequireAdmin>
               <AddProduct></AddProduct>
-            </RequireAuth>}>
+            </RequireAdmin>}>
           </Route>
           <Route path="users" element={
-            <RequireAuth>
+            <RequireAdmin>
               <Users></Users>
-            </RequireAuth>}>
+            </RequireAdmin>}>
           </Route>
           <Route path="manageProducts" element={
-            <RequireAuth>
+            <RequireAdmin>
               <ManageProducts></ManageProducts>
-            </RequireAuth>}>
+            </RequireAdmin>}>
           </Route>
         </Route>
         {/* End Dashboard Route */}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -31,6 +32,11 @@ const MyOrders = () => {
                 });
         }
     }, [user, navigate])
+
+    if (!orders.length > 0) {
+        return <Loading></Loading>
+    }
+
     return (
         <div>
             <h2>My Orders: {orders.length}</h2>
