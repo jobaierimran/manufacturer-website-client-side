@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import usePurchaseDetails from '../../hooks/usePurchaseDetails';
 
@@ -10,6 +11,36 @@ const ProductPurchase = () => {
     const [product] = usePurchaseDetails(productId);
     const [user] = useAuthState(auth);
 
+    const handleOrderSubmit = (event) => {
+        event.preventDefault();
+        const name = user.displayName;
+        const email = user.email;
+        const productName = event.target.productName.value;
+        const price = event.target.price.value;
+        const minQuantity = event.target.minQuantity.value;
+        const availableQuantity = event.target.availableQuantity.value;
+        const orderQuantity = event.target.orderQuantity.value;
+        const phone = event.target.phone.value;
+        const address = event.target.address.value;
+
+        const order = { name, email, productName, minQuantity, price, availableQuantity, orderQuantity, phone, address };
+
+        fetch('https://thawing-cove-14033.herokuapp.com/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast('Order placed Successfully');
+                    event.target.reset();
+                }
+            });
+    }
+
     return (
         <div className='container mx-auto'>
             <h2 className='text-primary text-3xl text-center font-bold mt-8'>Purchase Informations</h2>
@@ -17,7 +48,7 @@ const ProductPurchase = () => {
                 <div className="hero-content flex-col lg:flex-row-reverse">
 
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form>
+                        <form onSubmit={handleOrderSubmit}>
                             <div className="card-body">
                                 <div className="form-control">
                                     <label className="label">
