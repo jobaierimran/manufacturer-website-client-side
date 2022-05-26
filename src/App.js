@@ -20,6 +20,7 @@ import NotFound from './Pages/Shared/NotFound';
 import Blogs from './Pages/Blogs/Blogs';
 import Portfolio from './Pages/Portfolio/Portfolio';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 
 function App() {
   return (
@@ -62,6 +63,11 @@ function App() {
           <Route path="manageProducts" element={
             <RequireAdmin>
               <ManageProducts></ManageProducts>
+            </RequireAdmin>}>
+          </Route>
+          <Route path="manageOrders" element={
+            <RequireAdmin>
+              <ManageAllOrders></ManageAllOrders>
             </RequireAdmin>}>
           </Route>
         </Route>
