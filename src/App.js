@@ -14,6 +14,7 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import AddReview from './Pages/Dashboard/AddReview';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
+import ProductPurchase from './Pages/ProductDetails.js/ProductPurchase';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/product/:productId" element={<RequireAuth><ProductPurchase></ProductPurchase></RequireAuth>}></Route>
 
         {/* Start Dashboard Route */}
         <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
