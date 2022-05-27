@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const ManageAllOrders = () => {
-    const [orders, setOrders] = useState([]);
+    const [manageOrders, setManageOrders] = useState([]);
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
 
@@ -28,17 +28,17 @@ const ManageAllOrders = () => {
                     return res.json()
                 })
                 .then(data => {
-                    setOrders(data)
+                    setManageOrders(data)
                 });
         }
     }, [user, navigate])
 
-    if (!orders.length > 0) {
+    if (!manageOrders.length > 0) {
         return <Loading></Loading>
     }
     return (
         <div>
-            <h2>Total Orders: {orders.length}</h2>
+            <h2>Total Orders: {manageOrders.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* <!-- head --> */}
@@ -56,7 +56,7 @@ const ManageAllOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr key={order._id}>
+                            manageOrders.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order?.name}</td>
                                 <td>{order?.customer}</td>
