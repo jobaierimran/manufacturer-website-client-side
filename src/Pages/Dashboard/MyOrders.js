@@ -12,7 +12,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://thawing-cove-14033.herokuapp.com/order?customer=${user?.email}`, {
+            fetch(`https://thawing-cove-14033.herokuapp.com/order?email=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
